@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from './store';
 import {Show} from './common/types';
-import {LoadingStatus, slices} from './common/enums';
+import {LoadingStatus, Slices} from './common/enums';
 import {fetchShowsAPI} from './services/api';
 
 interface ShowsState {
@@ -25,7 +25,7 @@ export const fetchShows = createAsyncThunk(
 );
 
 const showsSlice = createSlice({
-  name: slices.SHOWS,
+  name: Slices.SHOWS,
   initialState,
   reducers: {},
   extraReducers: builder => {

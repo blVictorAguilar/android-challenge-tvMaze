@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {slices} from './common/enums';
+import {Slices} from './common/enums';
 
 interface FavoritesState {
   favorites: number[];
@@ -10,7 +10,7 @@ const initialState: FavoritesState = {
 };
 
 const favoritesSlice = createSlice({
-  name: slices.FAVORITES,
+  name: Slices.FAVORITES,
   initialState,
   reducers: {
     addFavorite(state, action: PayloadAction<number>) {

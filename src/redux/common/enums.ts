@@ -1,4 +1,4 @@
-export enum slices {
+export enum Slices {
   FAVORITES = 'favorites',
   SHOWS = 'shows',
 }
