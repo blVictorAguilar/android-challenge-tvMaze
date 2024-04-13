@@ -5,6 +5,13 @@ export interface Show {
   type: string;
   language: string;
   genres: string[];
-  image: string[];
+  image: {
+    original?: string;
+    medium?: string;
+  };
   summary: string;
+  schedule?: {
+    time?: string;
+    days?: string;
+  };
 }

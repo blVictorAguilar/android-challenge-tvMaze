@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from './store';
 import {Show} from './common/types';
 import {LoadingStatus, Slices} from './common/enums';
-import {fetchShowsAPI} from './services/api';
+import {fetchShowsAPI} from '../services/api';
 
 interface ShowsState {
   shows: Show[];
