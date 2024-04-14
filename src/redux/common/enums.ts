@@ -1,6 +1,7 @@
 export enum Slices {
   FAVORITES = 'favorites',
   SHOWS = 'shows',
+  RECENT_SEARCHES = 'recent_search',
 }
 
 export enum LoadingStatus {

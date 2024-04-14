@@ -1,4 +1,4 @@
-import {Show} from '../redux/common/types';
+import {SearchShowShape, Show} from '../redux/common/types';
 import axiosInstance from './axiosConfig';
 
 export const fetchShowsAPI = async (): Promise<Show[]> => {
@@ -39,7 +39,9 @@ export const getGroupedEpisodes = async (showId: number): Promise<Show[]> => {
   }
 };
 
-export const searchShowsAPI = async (query: string): Promise<Show[]> => {
+export const searchShowsAPI = async (
+  query: string,
+): Promise<SearchShowShape[]> => {
   try {
     const response = await axiosInstance.get('/search/shows?q=' + query);
     return response.data;

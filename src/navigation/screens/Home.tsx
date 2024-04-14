@@ -36,7 +36,7 @@ export default function Home() {
         keyExtractor={item => item.id}
         data={shows}
         renderItem={({item}) => (
-          <Card {...item} onCallbackFn={() => openModal(item)} />
+          <Card {...item} onCallbackFn={() => openModal(item)} size="medium" />
         )}
         numColumns={numColumns}
         contentContainerStyle={styles.contentContainer}

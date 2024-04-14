@@ -1,5 +1,5 @@
 import {StyleSheet, TextInput, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../shared/Colors';
 
@@ -8,11 +8,15 @@ type SearchInputProps = {
   onSubmitCallback: (arg: string) => void;
 };
 
-export default function SearchInput({
-  placeholder,
-  onSubmitCallback,
-}: SearchInputProps) {
+const SearchInput = forwardRef<any, SearchInputProps>((props, ref) => {
+  const {placeholder, onSubmitCallback} = props;
   const [value, setValue] = useState<string>('');
+
+  useImperativeHandle(ref, () => ({
+    clear: () => {
+      setValue('');
+    },
+  }));
 
   return (
     <View style={styles.inputContainer}>
@@ -31,15 +35,15 @@ export default function SearchInput({
       />
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
-    backgroundColor: '#f2f2f2',
     borderRadius: 20,
+    backgroundColor: colors.highlight,
     paddingHorizontal: 10,
     marginTop: 20,
   },
@@ -53,3 +57,5 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
+
+export default SearchInput;

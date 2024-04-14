@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {RouteNames} from '../common/enums';
 import colors from '../../shared/Colors';
-import {Search} from '../screens';
+import {Search, Account} from '../screens';
 
 const LazyHomeScreen = React.lazy(() => import('../screens/Home'));
 const LazyFavoritesScreen = React.lazy(() => import('../screens/Favorites'));
@@ -67,7 +67,7 @@ export default function BottomTabNavigator() {
       <Tab.Screen
         name={RouteNames.PROFILE}
         options={{headerShown: false}}
-        component={Search}></Tab.Screen>
+        component={Account}></Tab.Screen>
     </Tab.Navigator>
   );
 }

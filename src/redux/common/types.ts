@@ -15,3 +15,8 @@ export interface Show {
     days?: string;
   };
 }
+
+export type SearchShowShape = {
+  score: number;
+  show: Show;
+};
