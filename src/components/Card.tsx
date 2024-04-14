@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Dimensions,
   Image,
@@ -6,7 +7,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
 import globalStyles from '../shared/GlobalStyles';
 
 type CardProps = {
@@ -23,7 +23,7 @@ type CardProps = {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default function Card({image, name, language, onCallbackFn}: CardProps) {
+const Card = React.memo(({image, name, language, onCallbackFn}: CardProps) => {
   return (
     <Pressable onPress={onCallbackFn}>
       <View style={styles.container}>
@@ -40,7 +40,7 @@ export default function Card({image, name, language, onCallbackFn}: CardProps) {
       </View>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -64,3 +64,5 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 2,
   },
 });
+
+export default Card;

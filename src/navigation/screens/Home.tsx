@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchShows} from '../../redux/showsSlice';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -23,14 +23,13 @@ export default function Home() {
     dispatch(fetchShows());
   }, [dispatch]);
 
-  const openModal = (show: Show) => {
+  const openModal = useCallback((show: Show) => {
     setSelectedShow(show);
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedShow(null);
-  };
-
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList

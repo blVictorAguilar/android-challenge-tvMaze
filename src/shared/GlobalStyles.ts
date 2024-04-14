@@ -6,7 +6,7 @@ const commons = {
 };
 
 export enum FontSizes {
-  S = 10,
+  S = 11,
   M = 12,
   L = 22,
 }
