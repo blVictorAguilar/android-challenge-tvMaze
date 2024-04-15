@@ -45,11 +45,27 @@ To run the application locally, follow these steps:
 
 - React Native
 - Redux
+
+![Screenshot_2024-04-14-22-50-22-032_com tvapp](https://github.com/blVictorAguilar/android-challenge-tvMaze/assets/45950708/c318b97c-1b67-43f4-915f-797db1f51c8c)
+
+
+![Screenshot_2024-04-14-22-50-00-806_com tvapp](https://github.com/blVictorAguilar/android-challenge-tvMaze/assets/45950708/4b611418-3d7e-4736-a0e7-578e19b4a4cb)
+
+
+![Screenshot_2024-04-14-22-49-55-985_com tvapp](https://github.com/blVictorAguilar/android-challenge-tvMaze/assets/45950708/c886a061-67bb-4a6e-8d22-9b4c33ba2fbb)
+
+
+![Screenshot_2024-04-14-22-49-41-550_com tvapp](https://github.com/blVictorAguilar/android-challenge-tvMaze/assets/45950708/ae0ef5f6-d136-4a8e-9f88-1be756be3cdc)
+
+
+![Screenshot_2024-04-14-22-49-16-011_com tvapp](https://github.com/blVictorAguilar/android-challenge-tvMaze/assets/45950708/821a9674-c79d-4bb6-81dd-ff7ee19c8ce8)
+
 - React Navigation
 
 ## Contributing
 
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests to help improve this project.
+
 
 
 
