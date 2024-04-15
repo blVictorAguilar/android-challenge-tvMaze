@@ -1,16 +1,27 @@
-import React, {useRef, useState} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
+import {SafeAreaView, StyleSheet, FlatList} from 'react-native';
 import colors from '../../shared/Colors';
 import SearchInput from '../../components/SearchInput';
 import {searchShowsAPI} from '../../services/api';
 import {SearchShowShape, Show} from '../../redux/common/types';
 import Card from '../../components/Card';
 import {useFocusEffect} from '@react-navigation/native';
+import {Details} from '.';
+import useModal from '../../hooks/useModal';
 
 const SearchScreen = () => {
   const [data, setData] = useState<Show[]>([]);
   const numColumns = 3;
   const searchInputRef = useRef(null);
+
+  const {openModal, closeModal, ModalWrapper} = useModal();
+
+  const handleOpenAction = useCallback(
+    (show: Show) => {
+      openModal(<Details show={show} closeModal={closeModal} />);
+    },
+    [openModal, closeModal],
+  );
 
   function formatData(arr: SearchShowShape[]) {
     return arr.map(item => item.show);
@@ -23,7 +34,14 @@ const SearchScreen = () => {
   };
 
   function elementToRender(item) {
-    return <Card {...item} showLabel={false} size="small" />;
+    return (
+      <Card
+        {...item}
+        showLabel={false}
+        size="small"
+        onCallbackFn={() => handleOpenAction(item)}
+      />
+    );
   }
   function clearState() {
     setData([]);
@@ -39,7 +57,7 @@ const SearchScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <SearchInput
         onSubmitCallback={value => handleSearch(value)}
         ref={searchInputRef}
@@ -52,7 +70,8 @@ const SearchScreen = () => {
         keyExtractor={item => item.id.toString()}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+      <ModalWrapper />
+    </SafeAreaView>
   );
 };
 
@@ -61,36 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: colors.background,
-  },
-  showItem: {
-    padding: 10,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    backgroundColor: '#fff',
-  },
-  genres: {
-    color: colors.text,
-    marginBottom: 5,
-  },
-  details: {
-    flex: 1,
-  },
-  image: {
-    width: 80,
-    height: 80,
-    borderRadius: 10,
-    marginRight: 10,
-    resizeMode: 'contain',
-  },
-  title: {
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-
-  summary: {
-    color: colors.text,
   },
 });
 

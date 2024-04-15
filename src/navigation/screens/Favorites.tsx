@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {removeFavorite, selectFavoriteShows} from '../../redux/favoritesSlice';
+import {removeFavorite, selectFavorites} from '../../redux/favoritesSlice';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../shared/Colors';
 import HeaderButtons from '../../components/HeaderButtons';
@@ -21,7 +21,7 @@ import {sortElements} from '../../utils';
 const Favorites = () => {
   const dispatch = useDispatch();
   const [filterStatus, setFilterStatus] = useState<AlphabeticSort>('asc');
-  const favorites = useSelector(selectFavoriteShows);
+  const favorites = useSelector(selectFavorites);
   const [sortedFavorites, setSortedFavorites] = useState<Show[] | null>(null);
 
   function toggleFilter() {
@@ -32,7 +32,7 @@ const Favorites = () => {
 
   useEffect(() => {
     if (favorites.length) {
-      const sortedElements = sortElements(filterStatus, favorites, 'name');
+      const sortedElements = sortElements(filterStatus, [...favorites], 'name');
       setSortedFavorites([...sortedElements]);
     }
   }, [filterStatus, favorites]);
@@ -74,7 +74,6 @@ const Favorites = () => {
       <FlatList
         data={sortedFavorites}
         renderItem={renderFavoriteShow}
-        keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={Separator}
       />
     </View>

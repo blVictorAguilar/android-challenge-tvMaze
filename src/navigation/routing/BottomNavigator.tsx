@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {RouteNames} from '../common/enums';
 import colors from '../../shared/Colors';
 import {Search, Account} from '../screens';
+import globalStyles from '../../shared/GlobalStyles';
 
 const LazyHomeScreen = React.lazy(() => import('../screens/Home'));
 const LazyFavoritesScreen = React.lazy(() => import('../screens/Favorites'));
@@ -21,11 +22,26 @@ function getIconByRouteName(routeName: string): string {
   return bottomIcons[routeName as RouteNames];
 }
 
+function iconToRender(route, focused, color) {
+  return (
+    <Icon
+      name={getIconByRouteName(route.name)}
+      size={focused ? 29 : 25}
+      color={color}
+    />
+  );
+}
+
 export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
       initialRouteName={RouteNames.HOME}
       screenOptions={({route}) => ({
+        headerStyle: {
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        },
+        headerTintColor: colors.text,
+        headerTitleStyle: globalStyles.headerTitle,
         tabBarShowLabel: true,
         tabBarStyle: {
           position: 'absolute',
@@ -34,16 +50,8 @@ export default function BottomTabNavigator() {
           right: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.85)',
         },
-        tabBarIcon: ({color, focused}) => {
-          return (
-            <Icon
-              name={getIconByRouteName(route.name)}
-              size={focused ? 29 : 25}
-              color={color}
-            />
-          );
-        },
-        tabBarActiveTintColor: '#FF9752',
+        tabBarIcon: ({color, focused}) => iconToRender(route, focused, color),
+        tabBarActiveTintColor: colors.focused,
         tabBarInactiveTintColor: colors.highlight,
       })}>
       <Tab.Screen name={RouteNames.HOME} options={{headerShown: false}}>
@@ -53,7 +61,7 @@ export default function BottomTabNavigator() {
           </React.Suspense>
         )}
       </Tab.Screen>
-      <Tab.Screen name={RouteNames.FAVORITES} options={{headerShown: false}}>
+      <Tab.Screen name={RouteNames.FAVORITES} options={{headerShown: true}}>
         {() => (
           <React.Suspense fallback={null}>
             <LazyFavoritesScreen />
@@ -62,11 +70,11 @@ export default function BottomTabNavigator() {
       </Tab.Screen>
       <Tab.Screen
         name={RouteNames.SEARCH}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
         component={Search}></Tab.Screen>
       <Tab.Screen
         name={RouteNames.PROFILE}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
         component={Account}></Tab.Screen>
     </Tab.Navigator>
   );

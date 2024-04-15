@@ -34,7 +34,7 @@ const HeaderButtons = React.memo(
               <Icon
                 name={name}
                 size={default_icon_size}
-                color={focused ? colors.focused : colors.highlight}
+                color={focused ? colors.selected : colors.highlight}
               />
             </Pressable>
           ))}

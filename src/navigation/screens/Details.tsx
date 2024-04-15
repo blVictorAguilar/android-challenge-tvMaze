@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from 'react-native';
 import {getGroupedEpisodes} from '../../services/api';
-import {Show} from '../../redux/common/types';
 import globalStyles from '../../shared/GlobalStyles';
 import colors from '../../shared/Colors';
 import HeaderButtons from '../../components/HeaderButtons';
@@ -19,32 +18,28 @@ import {
   selectFavoriteById,
 } from '../../redux/favoritesSlice';
 import SummarySection from '../../components/SummarySection';
+import {Show} from '../../redux/common/types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ShowDetailsScreen = React.memo(
-  ({
-    image,
-    name,
-    genres,
-    summary,
-    schedule,
-    id,
-    closeModal,
-  }: Show & {closeModal: () => void}) => {
+  ({show, closeModal}: {show: Show; closeModal?: () => void}) => {
     const [episodes, setEpisodes] = useState([]);
+    const {image, name, genres, summary, schedule, id} = show;
     const dispatch = useDispatch();
     const isFavorite = useSelector(state => selectFavoriteById(state, id));
-    console.log('isFavorite: ', isFavorite);
 
     const headerElements = [
-      {name: 'close', onPressFn: closeModal},
+      {
+        name: 'close',
+        onPressFn: closeModal,
+      },
       {
         name: 'favorite',
         onPressFn: isFavorite
           ? () => dispatch(removeFavorite(id))
-          : () => dispatch(addFavorite(id)),
+          : () => dispatch(addFavorite(show)),
         focused: isFavorite,
       },
     ];

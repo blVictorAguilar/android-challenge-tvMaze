@@ -9,6 +9,7 @@ export enum FontSizes {
   S = 11,
   M = 12,
   L = 22,
+  XL = 26,
 }
 const globalStyles = {
   title: {
@@ -31,6 +32,11 @@ const globalStyles = {
     lineHeight: 12,
     fontFamily: commons.fontFamily,
     color: colors.secondary,
+  },
+  headerTitle: {
+    fontSize: FontSizes.XL,
+    fontWeight: '600',
+    ...commons,
   },
 };
 

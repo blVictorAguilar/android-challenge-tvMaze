@@ -1,15 +1,20 @@
 import React from 'react';
-import {Home, Details} from '../screens';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RouteNames} from '../common/enums';
 
 const Stack = createNativeStackNavigator();
+const LazyDetailsScreen = React.lazy(() => import('../screens/Details'));
 
 const AppNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName={RouteNames.HOME}>
-      <Stack.Screen name={RouteNames.HOME} component={Home} />
-      <Stack.Screen name={RouteNames.DETAILS} component={Details} />
+    <Stack.Navigator>
+      <Stack.Screen name={RouteNames.DETAILS}>
+        {() => (
+          <React.Suspense fallback={null}>
+            <LazyDetailsScreen />
+          </React.Suspense>
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };

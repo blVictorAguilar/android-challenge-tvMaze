@@ -1,10 +1,10 @@
-import {createSlice, PayloadAction, createSelector} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Slices} from './common/enums';
 import {RootState} from './store';
 import {Show} from './common/types';
 
 interface FavoritesState {
-  favorites: number[];
+  favorites: Show[];
 }
 
 const initialState: FavoritesState = {
@@ -15,12 +15,12 @@ const favoritesSlice = createSlice({
   name: Slices.FAVORITES,
   initialState,
   reducers: {
-    addFavorite(state, action: PayloadAction<number>) {
+    addFavorite(state, action: PayloadAction<Show>) {
       state.favorites.push(action.payload);
     },
     removeFavorite(state, action: PayloadAction<number>) {
-      const id = action.payload;
-      state.favorites = state.favorites.filter(favoriteId => favoriteId !== id);
+      const _id = action.payload;
+      state.favorites = state.favorites.filter(({id}) => id !== _id);
     },
   },
 });
@@ -30,12 +30,6 @@ export const {addFavorite, removeFavorite} = favoritesSlice.actions;
 export const selectFavorites = (state: RootState) => state.favorites.favorites;
 
 export const selectFavoriteById = (state: RootState, id: number) =>
-  state.favorites.favorites.some(_id => _id === id);
-
-export const selectFavoriteShows = createSelector(
-  [selectFavorites, state => state.shows.shows],
-  (favoriteIds, shows) =>
-    favoriteIds.map((id: number) => shows.find((show: Show) => show.id === id)),
-);
+  state.favorites.favorites.some(favorite => favorite.id === id);
 
 export default favoritesSlice.reducer;

@@ -4,7 +4,8 @@ const colors = {
   secondary: '#636363',
   text: '#f5f5f1',
   background: '#221f1f',
-  focused: '#B81D24',
+  selected: '#B81D24',
+  focused: '#FF9752',
 };
 
 export default colors;
