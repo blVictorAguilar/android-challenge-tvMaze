@@ -3,10 +3,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {RouteNames} from '../common/enums';
 import colors from '../../shared/Colors';
-import {Search, Account} from '../screens';
+import {Search, Account, Home} from '../screens';
 import globalStyles from '../../shared/GlobalStyles';
 
-const LazyHomeScreen = React.lazy(() => import('../screens/Home'));
 const LazyFavoritesScreen = React.lazy(() => import('../screens/Favorites'));
 
 const Tab = createBottomTabNavigator();
@@ -54,13 +53,10 @@ export default function BottomTabNavigator() {
         tabBarActiveTintColor: colors.focused,
         tabBarInactiveTintColor: colors.highlight,
       })}>
-      <Tab.Screen name={RouteNames.HOME} options={{headerShown: false}}>
-        {() => (
-          <React.Suspense fallback={null}>
-            <LazyHomeScreen />
-          </React.Suspense>
-        )}
-      </Tab.Screen>
+      <Tab.Screen
+        name={RouteNames.HOME}
+        options={{headerShown: false}}
+        component={Home}></Tab.Screen>
       <Tab.Screen name={RouteNames.FAVORITES} options={{headerShown: true}}>
         {() => (
           <React.Suspense fallback={null}>

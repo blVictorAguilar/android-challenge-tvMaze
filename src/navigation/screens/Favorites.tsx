@@ -52,18 +52,18 @@ const Favorites = () => {
     const {id, image, name, genres} = item;
     return (
       <View style={styles.card}>
+        <Image source={{uri: image.medium}} style={styles.image} />
+        <View style={styles.details}>
+          <Text style={globalStyles.sectionTitle}>{name}</Text>
+          <Text style={[globalStyles.paragraph, styles.genres]}>
+            {genres.join(', ')}
+          </Text>
+        </View>
         <TouchableOpacity
           onPress={() => handleRemoveFavorite(id)}
           style={styles.removeButton}>
           <Icon name="close" size={20} color={colors.text} />
         </TouchableOpacity>
-        <Image source={{uri: image.medium}} style={styles.image} />
-        <View style={styles.details}>
-          <Text style={[globalStyles.paragraph]}>{name}</Text>
-          <Text style={[globalStyles.paragraph, styles.genres]}>
-            {genres.join(', ')}
-          </Text>
-        </View>
       </View>
     );
   };
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: colors.background,
+    backgroundColor: 'black',
     borderRadius: 10,
     padding: 10,
     elevation: 3,
@@ -100,13 +100,15 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    marginBottom: 10,
+    alignItems: 'center',
   },
   image: {
     width: 80,
     height: 80,
     borderRadius: 10,
     marginRight: 10,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
   details: {
     flex: 1,
@@ -121,9 +123,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   removeButton: {
-    borderRadius: 20,
     padding: 5,
-    marginRight: 10,
   },
 });
 

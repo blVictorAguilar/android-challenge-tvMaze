@@ -38,6 +38,11 @@ const globalStyles = {
     fontWeight: '600',
     ...commons,
   },
+  sectionTitle: {
+    fontSize: 15,
+    fontWeight: '300',
+    ...commons,
+  },
 };
 
 export default globalStyles;

@@ -8,6 +8,7 @@ import Card from '../../components/Card';
 import {useFocusEffect} from '@react-navigation/native';
 import {Details} from '.';
 import useModal from '../../hooks/useModal';
+import useLoaderOverlay from '../../hooks/useLoader';
 
 const SearchScreen = () => {
   const [data, setData] = useState<Show[]>([]);
@@ -15,6 +16,7 @@ const SearchScreen = () => {
   const searchInputRef = useRef(null);
 
   const {openModal, closeModal, ModalWrapper} = useModal();
+  const {showLoader, hideLoader, LoaderOverlay} = useLoaderOverlay();
 
   const handleOpenAction = useCallback(
     (show: Show) => {
@@ -28,9 +30,11 @@ const SearchScreen = () => {
   }
 
   const handleSearch = async (query: string) => {
+    showLoader();
     const shows = await searchShowsAPI(query);
     const formattedShows = formatData(shows);
     setData(formattedShows);
+    hideLoader();
   };
 
   function elementToRender(item) {
@@ -70,6 +74,7 @@ const SearchScreen = () => {
         keyExtractor={item => item.id.toString()}
         showsVerticalScrollIndicator={false}
       />
+      <LoaderOverlay />
       <ModalWrapper />
     </SafeAreaView>
   );

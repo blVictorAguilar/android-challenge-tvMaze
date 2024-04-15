@@ -8,16 +8,28 @@ import {FlatList, StyleSheet} from 'react-native';
 import {Show} from '../../redux/common/types';
 import colors from '../../shared/Colors';
 import useModal from '../../hooks/useModal';
+import useLoaderOverlay from '../../hooks/useLoader';
+import {LoadingStatus} from '../../redux/common/enums';
 
 export default function Home() {
   const dispatch = useDispatch();
-  const {shows} = useSelector(state => state.shows);
+  const {shows, loading} = useSelector(state => state.shows);
   const numColumns = 2;
   const {openModal, closeModal, ModalWrapper} = useModal();
+  const {showLoader, hideLoader, LoaderOverlay} = useLoaderOverlay();
 
   useEffect(() => {
     dispatch(fetchShows());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (loading === LoadingStatus.PENDING) {
+      showLoader();
+    }
+    return () => {
+      hideLoader();
+    };
+  }, [loading, showLoader, hideLoader]);
 
   const handleOpenAction = useCallback(
     (show: Show) => {
@@ -41,6 +53,7 @@ export default function Home() {
         numColumns={numColumns}
         contentContainerStyle={styles.contentContainer}
       />
+      <LoaderOverlay />
       <ModalWrapper />
     </SafeAreaView>
   );
