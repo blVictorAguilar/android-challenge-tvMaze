@@ -4,7 +4,12 @@ import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
-import android.os.Bundle;
+import android.os.Build
+import android.os.Bundle
+import androidx.annotation.RequiresApi 
+import androidx.core.view.WindowCompat 
+import androidx.core.view.WindowInsetsCompat 
+import androidx.core.view.WindowInsetsControllerCompat 
 
 class MainActivity : ReactActivity() {
 
@@ -23,5 +28,24 @@ class MainActivity : ReactActivity() {
   
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(null)
+    hideSystemUI() 
   }
+
+  override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+    
+ // Function to hide NavigationBar 
+    @RequiresApi(Build.VERSION_CODES.R) 
+     private fun hideSystemUI() { 
+        WindowCompat.setDecorFitsSystemWindows(window, false) 
+        WindowInsetsControllerCompat(window, 
+            window.decorView.findViewById(android.R.id.content)).let { controller -> 
+            controller.hide(WindowInsetsCompat.Type.systemBars()) 
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE 
+        } 
+    } 
 }
