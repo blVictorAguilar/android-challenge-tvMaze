@@ -31,10 +31,11 @@ const Favorites = () => {
   }
 
   useEffect(() => {
-    if (favorites.length) {
-      const sortedElements = sortElements(filterStatus, [...favorites], 'name');
-      setSortedFavorites([...sortedElements]);
+    if (!favorites.length) {
+      setSortedFavorites([]);
     }
+    const sortedElements = sortElements(filterStatus, [...favorites], 'name');
+    setSortedFavorites([...sortedElements]);
   }, [filterStatus, favorites]);
 
   const elements = [
