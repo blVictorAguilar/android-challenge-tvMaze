@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#221f1f",
+      "flex": 1,
+      "padding": 20,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#f5f5f1",
+        "fontFamily": "NetflixFont",
+        "fontSize": 22,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Profile
+  </Text>
+  <View
+    style={
+      {
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontFamily": "NetflixFont",
+          "fontSize": 15,
+          "fontWeight": "300",
+        }
+      }
+    >
+      Name:
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontFamily": "NetflixFont",
+          "fontSize": 12,
+          "lineHeight": 24,
+        }
+      }
+    >
+      Victor Aguilar
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontFamily": "NetflixFont",
+          "fontSize": 15,
+          "fontWeight": "300",
+        }
+      }
+    >
+      Email:
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontFamily": "NetflixFont",
+          "fontSize": 12,
+          "lineHeight": 24,
+        }
+      }
+    >
+      blvictoraguilar@gmail.com
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontFamily": "NetflixFont",
+          "fontSize": 15,
+          "fontWeight": "300",
+        }
+      }
+    >
+      Application Info:
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontFamily": "NetflixFont",
+          "fontSize": 12,
+          "lineHeight": 24,
+        }
+      }
+    >
+      Version 1.0.0
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginTop": 20,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      selectable={false}
+      style={
+        [
+          {
+            "color": "#f5f5f1",
+            "fontSize": 24,
+          },
+          {
+            "marginRight": 10,
+          },
+          {
+            "fontFamily": "FontAwesome",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          {},
+        ]
+      }
+    >
+      
+    </Text>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#f5f5f1",
+            "fontFamily": "NetflixFont",
+            "fontSize": 15,
+            "fontWeight": "300",
+          }
+        }
+      >
+        Connect on LinkedIn
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#FF9752",
+        "borderRadius": 5,
+        "bottom": 100,
+        "left": 20,
+        "opacity": 1,
+        "padding": 15,
+        "position": "absolute",
+        "right": 20,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#f5f5f1",
+          "fontSize": 16,
+        }
+      }
+    >
+      Clear Data
+    </Text>
+  </View>
+</View>
+`;
