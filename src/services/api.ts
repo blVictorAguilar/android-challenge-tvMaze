@@ -1,9 +1,9 @@
 import {SearchShowShape, Show} from '../redux/common/types';
 import axiosInstance from './axiosConfig';
 
-export const fetchShowsAPI = async (): Promise<Show[]> => {
+export const fetchShowsAPI = async (page: number): Promise<Show[]> => {
   try {
-    const response = await axiosInstance.get('/shows?page=1');
+    const response = await axiosInstance.get(`/shows?page=${page}`);
     return response.data;
   } catch (error) {
     throw error;

@@ -1,15 +1,16 @@
 import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchShows} from '../../redux/showsSlice';
+import {fetchShows, onLoadSync} from '../../redux/showsSlice';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Card from '../../components/Card';
 import {Details} from '.';
-import {FlatList, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Show} from '../../redux/common/types';
 import colors from '../../shared/Colors';
 import useModal from '../../hooks/useModal';
 import useLoaderOverlay from '../../hooks/useLoader';
 import {LoadingStatus} from '../../redux/common/enums';
+import {FlashList} from '@shopify/flash-list';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -18,9 +19,17 @@ export default function Home() {
   const {openModal, closeModal, ModalWrapper} = useModal();
   const {showLoader, hideLoader, LoaderOverlay} = useLoaderOverlay();
 
-  useEffect(() => {
-    dispatch(fetchShows());
+  const handleOnLoadEndReached = useCallback(() => {
+    dispatch(fetchShows() as never);
   }, [dispatch]);
+
+  const handleFetchData = useCallback(() => {
+    dispatch(onLoadSync() as never);
+  }, [dispatch]);
+
+  useEffect(() => {
+    handleFetchData();
+  }, [handleFetchData]);
 
   useEffect(() => {
     if (loading === LoadingStatus.PENDING) {
@@ -40,8 +49,10 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        keyExtractor={item => item.id}
+      <FlashList
+        onEndReached={handleOnLoadEndReached}
+        showsVerticalScrollIndicator={false}
+        onEndReachedThreshold={0.1}
         data={shows}
         renderItem={({item}) => (
           <Card
@@ -50,8 +61,8 @@ export default function Home() {
             size="medium"
           />
         )}
+        estimatedItemSize={245}
         numColumns={numColumns}
-        contentContainerStyle={styles.contentContainer}
       />
       <LoaderOverlay />
       <ModalWrapper />
