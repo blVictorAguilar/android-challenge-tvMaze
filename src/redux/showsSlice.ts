@@ -56,10 +56,13 @@ const showsSlice = createSlice({
         state.error = null;
         state.page++;
       })
-      .addCase(fetchShows.rejected, (state, action: PayloadAction<string>) => {
-        state.loading = LoadingStatus.FAILED;
-        state.error = action.payload;
-      })
+      .addCase<any>(
+        fetchShows.rejected,
+        (state, action: PayloadAction<string>) => {
+          state.loading = LoadingStatus.FAILED;
+          state.error = action.payload;
+        },
+      )
       .addCase(onLoadSync.pending, state => {
         state.loading = LoadingStatus.PENDING;
       })
@@ -69,12 +72,16 @@ const showsSlice = createSlice({
         state.error = null;
         state.isSynced = true;
       })
-      .addCase(onLoadSync.rejected, (state, action: PayloadAction<string>) => {
-        state.loading = LoadingStatus.FAILED;
-        state.error = action.payload;
-      });
+      .addCase<any>(
+        onLoadSync.rejected,
+        (state, action: PayloadAction<string>) => {
+          state.loading = LoadingStatus.FAILED;
+          state.error = action.payload;
+        },
+      );
   },
 });
+
 export const showsActions = showsSlice.actions;
 export const showsReducer = showsSlice.reducer;
 export const selectShows = (state: RootState) => state.shows.shows;

@@ -14,8 +14,8 @@ type CardProps = {
     medium?: string;
     original?: string;
   };
-  name: string;
-  id: number;
+  name?: string;
+  id?: number;
   onCallbackFn: (args?: any) => void;
   language?: string;
   size: 'small' | 'medium' | 'large';

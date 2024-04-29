@@ -11,10 +11,11 @@ import useModal from '../../hooks/useModal';
 import useLoaderOverlay from '../../hooks/useLoader';
 import {LoadingStatus} from '../../redux/common/enums';
 import {FlashList} from '@shopify/flash-list';
+import {RootState} from '../../redux/store';
 
 export default function Home() {
   const dispatch = useDispatch();
-  const {shows, loading} = useSelector(state => state.shows);
+  const {shows, loading} = useSelector((state: RootState) => state.shows);
   const numColumns = 2;
   const {openModal, closeModal, ModalWrapper} = useModal();
   const {showLoader, hideLoader, LoaderOverlay} = useLoaderOverlay();
@@ -54,7 +55,7 @@ export default function Home() {
         showsVerticalScrollIndicator={false}
         onEndReachedThreshold={0.1}
         data={shows}
-        renderItem={({item}) => (
+        renderItem={({item}: {item: Show}) => (
           <Card
             {...item}
             onCallbackFn={() => handleOpenAction(item)}

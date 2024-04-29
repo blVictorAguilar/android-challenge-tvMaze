@@ -114,12 +114,6 @@ const styles = StyleSheet.create({
   details: {
     flex: 1,
   },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: colors.text,
-  },
   genres: {
     color: colors.text,
   },

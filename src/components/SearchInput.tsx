@@ -8,15 +8,21 @@ type SearchInputProps = {
   onSubmitCallback: (arg: string) => void;
 };
 
+type ImperativeHandleActionTypes = {
+  clear: () => void;
+};
 const SearchInput = forwardRef<any, SearchInputProps>((props, ref) => {
   const {placeholder, onSubmitCallback} = props;
   const [value, setValue] = useState<string>('');
 
-  useImperativeHandle(ref, () => ({
-    clear: () => {
-      setValue('');
-    },
-  }));
+  useImperativeHandle(
+    ref,
+    (): ImperativeHandleActionTypes => ({
+      clear: () => {
+        setValue('');
+      },
+    }),
+  );
 
   return (
     <View style={styles.inputContainer}>

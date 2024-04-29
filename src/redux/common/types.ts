@@ -12,7 +12,7 @@ export interface Show {
   summary: string;
   schedule?: {
     time?: string;
-    days?: string;
+    days?: string[];
   };
 }
 

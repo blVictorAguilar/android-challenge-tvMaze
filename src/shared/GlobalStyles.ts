@@ -1,47 +1,44 @@
 import colors from './Colors';
 
-const commons = {
+const fontCommons = {
   fontFamily: 'NetflixFont',
   color: colors.text,
 };
 
 export enum FontSizes {
-  S = 11,
-  M = 12,
+  XS = 10,
+  S = 12,
+  M = 15,
   L = 22,
   XL = 26,
 }
 const globalStyles = {
   title: {
     fontSize: FontSizes.L,
-    fontWeight: '600',
-    ...commons,
+    ...fontCommons,
   },
   subtitle: {
     fontSize: FontSizes.M,
-    fontWeight: '600',
-    ...commons,
+    ...fontCommons,
   },
   paragraph: {
     fontSize: FontSizes.M,
     lineHeight: 24,
-    ...commons,
+    ...fontCommons,
   },
   details: {
-    fontSize: FontSizes.S,
+    fontSize: FontSizes.XS,
     lineHeight: 12,
-    fontFamily: commons.fontFamily,
+    fontFamily: fontCommons.fontFamily,
     color: colors.secondary,
   },
   headerTitle: {
     fontSize: FontSizes.XL,
-    fontWeight: '600',
-    ...commons,
+    ...fontCommons,
   },
   sectionTitle: {
     fontSize: 15,
-    fontWeight: '300',
-    ...commons,
+    ...fontCommons,
   },
 };
 

@@ -1,5 +1,5 @@
 import React, {useCallback, useRef, useState} from 'react';
-import {SafeAreaView, StyleSheet, FlatList} from 'react-native';
+import {SafeAreaView, StyleSheet, FlatList, TextInput} from 'react-native';
 import colors from '../../shared/Colors';
 import SearchInput from '../../components/SearchInput';
 import {searchShowsAPI} from '../../services/api';
@@ -13,7 +13,7 @@ import useLoaderOverlay from '../../hooks/useLoader';
 const SearchScreen = () => {
   const [data, setData] = useState<Show[]>([]);
   const numColumns = 3;
-  const searchInputRef = useRef(null);
+  const searchInputRef = useRef<TextInput>(null);
 
   const {openModal, closeModal, ModalWrapper} = useModal();
   const {showLoader, hideLoader, LoaderOverlay} = useLoaderOverlay();
@@ -37,7 +37,7 @@ const SearchScreen = () => {
     hideLoader();
   };
 
-  function elementToRender(item) {
+  function elementToRender(item: Show) {
     return (
       <Card
         {...item}

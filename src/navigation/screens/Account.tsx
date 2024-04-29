@@ -1,33 +1,47 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Linking} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+  Alert,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../shared/Colors';
 import globalStyles from '../../shared/GlobalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Section from '../../components/Section';
+import Separator from '../../components/Separator';
+
+const LINKEDIN_PROFILE =
+  'https://www.linkedin.com/in/victor-aguilar-7a60a3162/';
+
+const sectionFields = [
+  {title: 'Name :', content: 'Victor Aguilar'},
+  {title: 'Email :', content: 'blvictoraguilar@gmail.com'},
+  {title: 'Phone :', content: '7771423552'},
+  {title: 'Application info :', content: 'Version 1.0.0'},
+];
 
 const Profile = () => {
   const handleClearData = async () => {
     try {
       await AsyncStorage.clear();
+      Alert.alert('Data cleared successfully....');
     } catch (error) {
-      console.error('Error clearing AsyncStorage:', error);
+      Alert.alert('Error clearing AsyncStorage:' + error);
     }
   };
+
   return (
     <View style={styles.container}>
-      <Text style={globalStyles.title}>Profile</Text>
-      <View style={styles.infoContainer}>
-        <Text style={globalStyles.sectionTitle}>Name:</Text>
-        <Text style={globalStyles.paragraph}>Victor Aguilar</Text>
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={globalStyles.sectionTitle}>Email:</Text>
-        <Text style={globalStyles.paragraph}>blvictoraguilar@gmail.com</Text>
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={globalStyles.sectionTitle}>Application Info:</Text>
-        <Text style={globalStyles.paragraph}>Version 1.0.0</Text>
-      </View>
+      {sectionFields.map(item => (
+        <>
+          <Section key={item.title} {...item} />
+          <Separator />
+        </>
+      ))}
       <View style={styles.linkedInContainer}>
         <Icon
           name="linkedin"
@@ -35,15 +49,11 @@ const Profile = () => {
           color={colors.highlight}
           style={styles.icon}
         />
-        <TouchableOpacity
-          onPress={() =>
-            Linking.openURL(
-              'https://www.linkedin.com/in/victor-aguilar-7a60a3162/',
-            )
-          }>
+        <TouchableOpacity onPress={() => Linking.openURL(LINKEDIN_PROFILE)}>
           <Text style={globalStyles.sectionTitle}>Connect on LinkedIn</Text>
         </TouchableOpacity>
       </View>
+
       <TouchableOpacity style={styles.clearButton} onPress={handleClearData}>
         <Text style={styles.clearButtonText}>Clear Data</Text>
       </TouchableOpacity>
@@ -58,14 +68,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
-  infoContainer: {
-    marginBottom: 10,
-  },
-
-  value: {
-    fontSize: 16,
-    color: colors.text,
-  },
   clearButton: {
     backgroundColor: colors.focused,
     padding: 15,

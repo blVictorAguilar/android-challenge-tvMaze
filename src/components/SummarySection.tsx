@@ -7,7 +7,7 @@ import {textFormatter} from '../utils';
 const THRESHOLD = 150;
 
 export default function SummarySection({text}: {text: string}) {
-  const [collapsed, setCollapsed] = useState<boolean>(true); // Start collapsed
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const formattedText = textFormatter(text);
 
   const toggleCollapse = useCallback(() => {

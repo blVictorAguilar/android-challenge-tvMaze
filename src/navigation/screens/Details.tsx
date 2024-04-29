@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,6 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import {getGroupedEpisodes} from '../../services/api';
 import globalStyles from '../../shared/GlobalStyles';
 import colors from '../../shared/Colors';
 import HeaderButtons from '../../components/HeaderButtons';
@@ -19,16 +18,18 @@ import {
 } from '../../redux/favoritesSlice';
 import SummarySection from '../../components/SummarySection';
 import {Show} from '../../redux/common/types';
+import {RootState} from '../../redux/store';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ShowDetailsScreen = React.memo(
   ({show, closeModal}: {show: Show; closeModal?: () => void}) => {
-    const [episodes, setEpisodes] = useState([]);
     const {image, name, genres, summary, schedule, id} = show;
     const dispatch = useDispatch();
-    const isFavorite = useSelector(state => selectFavoriteById(state, id));
+    const isFavorite = useSelector((state: RootState) =>
+      selectFavoriteById(state, id),
+    );
 
     const headerElements = [
       {
@@ -43,15 +44,6 @@ const ShowDetailsScreen = React.memo(
         focused: isFavorite,
       },
     ];
-
-    const fetchData = useCallback(async () => {
-      try {
-        const response = await getGroupedEpisodes(id);
-        setEpisodes(response);
-      } catch (error) {
-        console.error('Error fetching episodes:', error);
-      }
-    }, [id]);
 
     return (
       <View style={styles.container}>

@@ -56,7 +56,8 @@ export default function BottomTabNavigator() {
       <Tab.Screen
         name={RouteNames.HOME}
         options={{headerShown: false}}
-        component={Home}></Tab.Screen>
+        component={Home}
+      />
       <Tab.Screen name={RouteNames.FAVORITES} options={{headerShown: true}}>
         {() => (
           <React.Suspense fallback={null}>
@@ -64,14 +65,8 @@ export default function BottomTabNavigator() {
           </React.Suspense>
         )}
       </Tab.Screen>
-      <Tab.Screen
-        name={RouteNames.SEARCH}
-        options={{headerShown: true}}
-        component={Search}></Tab.Screen>
-      <Tab.Screen
-        name={RouteNames.PROFILE}
-        options={{headerShown: true}}
-        component={Account}></Tab.Screen>
+      <Tab.Screen name={RouteNames.SEARCH} component={Search} />
+      <Tab.Screen name={RouteNames.PROFILE} component={Account} />
     </Tab.Navigator>
   );
 }
